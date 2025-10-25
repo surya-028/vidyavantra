@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorials - Vidyavantra</title>
+  <style>
+    /* ======= (Your original CSS - unchanged) ======= */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; }
+    .header { background: white; padding: 20px 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 100; }
+    .header-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.8rem; font-weight: bold; background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .nav-tabs { display: flex; gap: 30px; }
+  .nav-tab { padding: 10px 20px; background: none; border: none; font-size: 1rem; font-weight: 500; color: #666; cursor: pointer; border-radius: 25px; transition: all 0.3s ease; position: relative; }
+  .nav-tab.active { background: linear-gradient(45deg, #667eea, #764ba2); color: white; }
+  .nav-tab:hover:not(.active) { background: #f8f9fa; color: #333; }
+    .main-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    .hero-section { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 40px; text-align: center; }
+    .hero-title { font-size: 2.5rem; color: #333; margin-bottom: 15px; background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.2rem; color: #666; margin-bottom: 30px; line-height: 1.6; }
+    .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: bold; color: #667eea; display: block; }
+    .stat-label { color: #666; font-size: 0.9rem; margin-top: 5px; }
+    .search-section { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 40px; }
+    .search-form { display: grid; grid-template-columns: 1fr auto; gap: 15px; margin-bottom: 25px; }
+    .search-input { padding: 15px 20px; border: 2px solid #e1e5e9; border-radius: 50px; font-size: 1rem; outline: none; transition: all 0.3s ease; }
+    .search-input:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+    .search-btn { padding: 15px 30px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+    .search-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3); }
+    .filters { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+    .filter-group { display: flex; flex-direction: column; gap: 5px; }
+    .filter-label { font-size: 0.9rem; color: #666; font-weight: 500; }
+    .filter-select { padding: 10px 15px; border: 2px solid #e1e5e9; border-radius: 10px; font-size: 0.9rem; outline: none; background: white; cursor: pointer; transition: border-color 0.3s ease; }
+    .filter-select:focus { border-color: #667eea; }
+  .section-title { font-size: 1.8rem; color: #333; margin-bottom: 25px; text-align: center; }
+    .tutorials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+    .tutorial-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; cursor: pointer; }
+    .tutorial-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); }
+    .tutorial-thumbnail { width: 100%; height: 200px; background: linear-gradient(45deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; position: relative; }
+    .play-button { position: absolute; width: 60px; height: 60px; background: rgba(255, 255, 255, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #667eea; transition: all 0.3s ease; }
+    .play-button:hover { background: white; transform: scale(1.1); }
+    .tutorial-content { padding: 25px; }
+    .tutorial-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+    .tutorial-category { background: #e3f2fd; color: #1976d2; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
+    .tutorial-level { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
+    .level-beginner { background: #e8f5e8; color: #2e7d32; }
+    .level-intermediate { background: #fff3e0; color: #f57c00; }
+    .level-advanced { background: #ffebee; color: #c62828; }
+    .tutorial-title { font-size: 1.3rem; color: #333; margin-bottom: 10px; line-height: 1.4; font-weight: 600; }
+    .tutorial-description { color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+    .tutorial-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 0.85rem; color: #999; }
+    .tutorial-duration { display: flex; align-items: center; gap: 5px; }
+    .tutorial-rating { display: flex; align-items: center; gap: 5px; }
+    .tutorial-progress { width: 100%; height: 6px; background: #e1e5e9; border-radius: 3px; margin-bottom: 15px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(45deg, #667eea, #764ba2); border-radius: 3px; transition: width 0.3s ease; }
+    .tutorial-actions { display: flex; gap: 10px; }
+    .action-btn { flex: 1; padding: 12px 20px; border: none; border-radius: 25px; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+    .primary-btn { background: linear-gradient(45deg, #667eea, #764ba2); color: white; }
+    .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3); }
+    .secondary-btn { background: white; color: #667eea; border: 2px solid #667eea; }
+    .secondary-btn:hover { background: #667eea; color: white; }
+    .learning-paths { margin-bottom: 40px; }
+    .path-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); margin-bottom: 20px; }
+    .path-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .path-title { font-size: 1.5rem; color: #333; font-weight: 600; }
+    .path-duration { background: #e3f2fd; color: #1976d2; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+    .path-description { color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 25px; }
+    .path-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .step-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; transition: all 0.3s ease; }
+    .step-item:hover { background: #e3f2fd; }
+    .step-number { width: 30px; height: 30px; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9rem; }
+    .step-title { font-weight: 500; color: #333; }
+    .no-results { text-align: center; padding: 60px 20px; color: #666; }
+    .no-results-icon { font-size: 4rem; margin-bottom: 20px; }
+    .no-results-title { font-size: 1.5rem; margin-bottom: 10px; color: #333; }
+    .no-results-text { font-size: 1rem; line-height: 1.6; }
+    .loading { text-align: center; padding: 40px; color: #666; }
+    .loading-spinner { width: 40px; height: 40px; border: 4px solid #e1e5e9; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  .flowchart-categories { margin-bottom: 40px; }
+    .flowchart-nav { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; }
+    .flowchart-tab { padding: 12px 25px; background: white; border: 2px solid #e1e5e9; border-radius: 25px; font-size: 1rem; font-weight: 500; color: #666; cursor: pointer; transition: all 0.3s ease; }
+    .flowchart-tab.active { background: linear-gradient(45deg, #667eea, #764ba2); color: white; border-color: transparent; }
+    .flowchart-tab:hover:not(.active) { background: #f8f9fa; border-color: #667eea; color: #333; }
+    .flowchart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+    .flowchart-card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer; }
+    .flowchart-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+    .flowchart-header { text-align: center; margin-bottom: 30px; }
+    .flowchart-title { font-size: 1.5rem; color: #333; margin-bottom: 10px; font-weight: 600; }
+    .flowchart-subtitle { color: #666; font-size: 1rem; margin-bottom: 20px; }
+    .flowchart-stats { display: flex; justify-content: center; gap: 20px; font-size: 0.9rem; color: #999; }
+    .flowchart-svg { width: 100%; height: auto; max-height: 500px; border-radius: 10px; background: #f8f9fa; padding: 20px; box-sizing: border-box; }
+    .flowchart-node { fill: #667eea; stroke: #5a67d8; stroke-width: 2; cursor: pointer; transition: all 0.3s ease; }
+    .flowchart-node:hover { fill: #5a67d8; transform: scale(1.05); }
+    .flowchart-node.completed { fill: #48bb78; stroke: #38a169; }
+    .flowchart-node.current { fill: #ed8936; stroke: #dd6b20; animation: pulse 2s infinite; }
+    .flowchart-node.locked { fill: #a0aec0; stroke: #718096; opacity: 0.6; }
+    .flowchart-text { fill: white; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 500; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+    .flowchart-connection { stroke: #cbd5e0; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .flowchart-legend { display: flex; justify-content: center; gap: 20px; margin-top: 20px; font-size: 0.9rem; }
+    .legend-item { display: flex; align-items: center; gap: 8px; }
+    .legend-color { width: 16px; height: 16px; border-radius: 50%; }
+    .flowchart-actions { display: flex; gap: 15px; margin-top: 25px; justify-content: center; }
+    .flowchart-btn { padding: 12px 25px; border: none; border-radius: 25px; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
+    .flowchart-btn.primary { background: linear-gradient(45deg, #667eea, #764ba2); color: white; }
+    .flowchart-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3); }
+    .flowchart-btn.secondary { background: white; color: #667eea; border: 2px solid #667eea; }
+    .flowchart-btn.secondary:hover { background: #667eea; color: white; }
+    @media (max-width: 768px) {
+      .header-content { flex-direction: column; gap: 20px; }
+      .nav-tabs { gap: 15px; }
+      .nav-tab { padding: 8px 15px; font-size: 0.9rem; }
+      .hero-title { font-size: 2rem; }
+      .search-form { grid-template-columns: 1fr; }
+      .filters { justify-content: flex-start; }
+      .categories-grid { grid-template-columns: 1fr; }
+      .tutorials_grid { grid-template-columns: 1fr; }
+      .path-steps { grid-template-columns: 1fr; }
+      .tutorial-actions { flex-direction: column; }
+      .flowchart-nav { flex-direction: column; gap: 10px; }
+      .flowchart-grid { grid-template-columns: 1fr; }
+      .flowchart-legend { flex-direction: column; gap: 10px; }
+      .flowchart-actions { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .main-container { padding: 20px 10px; }
+      .hero-section { padding: 25px; }
+      .search-section { padding: 20px; }
+      .tutorial-content { padding: 20px; }
+      .path-card { padding: 20px; }
+    }
+    /* ======= end CSS ======= */
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="logo">Vidyavantra</div>
+        <button onclick="window.location.href='/'" style="padding:6px 10px; border-radius:8px; border:none; background:#667eea; color:#fff; cursor:pointer;">Home</button>
+      </div>
+      <div class="nav-tabs">
+        <!-- pass event into switchSection so JS can use event.target safely -->
+        <button class="nav-tab active" onclick="switchSection(event, 'tutorials')">📚 Tutorials</button>
+        <button class="nav-tab" onclick="switchSection(event, 'paths')">🛤️ Learning Paths</button>
+        <button class="nav-tab" onclick="switchSection(event, 'flowcharts')">📊 Course Flowcharts</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <h1 class="hero-title">Master New Skills with Expert Tutorials</h1>
+      <p class="hero-subtitle">Learn from industry professionals with hands-on tutorials, interactive exercises, and real-world projects</p>
+      <div class="hero-stats">
+        <div class="stat-item"><span class="stat-number">500+</span><span class="stat-label">Expert Tutorials</span></div>
+        <div class="stat-item"><span class="stat-number">50K+</span><span class="stat-label">Active Learners</span></div>
+        <div class="stat-item"><span class="stat-number">25+</span><span class="stat-label">Skill Categories</span></div>
+        <div class="stat-item"><span class="stat-number">95%</span><span class="stat-label">Completion Rate</span></div>
+      </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section">
+      <div class="search-form">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search tutorials, skills, or topics...">
+        <button class="search-btn" id="searchBtn">🔍 Search</button>
+      </div>
+
+      <div class="filters">
+        <!-- Category filter removed: tutorials are fetched live from YouTube -->
+
+        <div class="filter-group">
+          <label class="filter-label">Level</label>
+          <select class="filter-select" id="levelFilter">
+            <option value="">All Levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Duration</label>
+          <select class="filter-select" id="durationFilter">
+            <option value="">Any Duration</option>
+            <option value="short">Under 1 hour</option>
+            <option value="medium">1-3 hours</option>
+            <option value="long">3+ hours</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Sort By</label>
+          <select class="filter-select" id="sortFilter">
+            <option value="popular">Most Popular</option>
+            <option value="newest">Newest First</option>
+            <option value="rating">Highest Rated</option>
+            <option value="duration">Duration</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories removed: tutorials are fetched live from YouTube -->
+
+    <!-- Learning Paths Section -->
+    <div class="content-section" id="pathsSection" style="display: none;">
+      <div class="learning-paths">
+        <h2 class="section-title">Structured Learning Paths</h2>
+        <div id="pathsContainer"></div>
+      </div>
+    </div>
+
+    <!-- Tutorials Section (default visible) -->
+    <div class="content-section" id="tutorialsSection">
+      <div class="tutorials-section">
+        <h2 class="section-title">Featured Tutorials</h2>
+        <div id="tutorialsContainer">
+          <div class="tutorials-grid" id="tutorialsGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flowcharts Section -->
+    <div class="content-section" id="flowchartsSection" style="display: none;">
+      <div class="flowcharts-section">
+        <h2 class="section-title">Course & Career Flowcharts</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 1.1rem;">Visual roadmaps to guide your learning journey and career progression</p>
+        <div class="flowchart-categories">
+          <div class="flowchart-nav">
+            <button class="flowchart-tab active" onclick="switchFlowchartCategory(event,'career')">🎯 Career Paths</button>
+            <button class="flowchart-tab" onclick="switchFlowchartCategory(event,'skills')">🛠️ Skill Trees</button>
+            <button class="flowchart-tab" onclick="switchFlowchartCategory(event,'courses')">📚 Course Maps</button>
+          </div>
+        </div>
+        <div id="flowchartsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /*********************
+     * State & Defaults
+     *********************/
+  let currentSection = 'tutorials'; // show Tutorials by default (matching active nav-tab)
+  let currentFlowchartCategory = 'career';
+
+  // Global collections used by the page scripts.
+  // Some code below referenced `categories` and `tutorials` directly while
+  // other parts used `allCategories` / `allTutorials`. Define both aliases
+  // and keep them in-sync to avoid ReferenceErrors and mismatch bugs.
+  let allTutorials = [];
+  let tutorials = allTutorials; // alias used in some functions
+  let filteredTutorials = [];
+  let allPaths = [];
+  let allFlowcharts = {}; // { career: [...], skills: [...], courses: [...] }
+
+    /*********************
+     * Fetch functions
+     *********************/
+    async function fetchTutorials() {
+      try {
+        const resp = await fetch('/api/tutorials');
+        if (!resp.ok) throw new Error('Failed to fetch tutorials');
+        const data = await resp.json();
+        // Normalize tutorials for frontend usage and provide safe defaults
+        allTutorials = (data.tutorials || []).map((tut, idx) => ({
+          id: tut.id || tut.videoId || idx + 1,
+          title: tut.title || 'Untitled tutorial',
+          description: tut.description || '',
+          category: (tut.category || tut.instructor || 'general').toString().toLowerCase(),
+          instructor: tut.instructor || '',
+          thumbnail: tut.thumbnail || '',
+          level: (tut.level || 'beginner').toString().toLowerCase(),
+          duration: tut.duration || '0', // keep as string (you can set numeric hours in backend)
+          rating: Number(tut.rating) || 0,
+          students: Number(tut.students) || 0,
+          progress: Number(tut.progress) || 0,
+          tags: tut.tags || [],
+          isNew: Boolean(tut.isNew),
+          isFeatured: Boolean(tut.isFeatured),
+          videoId: tut.videoId || tut.id || null,
+        }));
+
+        filteredTutorials = [...allTutorials];
+      } catch (e) {
+        console.error('fetchTutorials error:', e);
+        // Do not show static/sample tutorials. Clear lists and show an error to the user.
+        allTutorials = [];
+        filteredTutorials = [];
+        const tutorialsGrid = document.getElementById('tutorialsGrid');
+        if (tutorialsGrid) {
+          tutorialsGrid.innerHTML = `
+            <div class="no-results">
+              <div class="no-results-icon">⚠️</div>
+              <h3 class="no-results-title">Unable to load tutorials</h3>
+              <p class="no-results-text">The backend failed to fetch tutorials from YouTube. Make sure the <code>YT_API_KEY</code> environment variable is set on the server and restart the app.</p>
+            </div>
+          `;
+        }
+      }
+    }
+
+    function showLoading(containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+        <div class="loading-spinner">
+            <p>Loading...</p>
+        </div>
+    `;
+}
+
+  // Categories removed - tutorials are fetched directly from YouTube via backend
+
+async function fetchData() {
+  showLoading('tutorialsContainer');
+
+  try {
+    const resp = await fetch('/api/tutorials');
+    if (!resp.ok) throw new Error('Failed to fetch tutorials');
+    const tutorialsData = await resp.json();
+    allTutorials = tutorialsData.tutorials || [];
+    filteredTutorials = [...allTutorials];
+    renderTutorials();
+  } catch (e) {
+    console.error('fetchData error:', e);
+    const tutorialsGrid = document.getElementById('tutorialsGrid');
+    if (tutorialsGrid) tutorialsGrid.innerHTML = `
+      <div class="no-results">
+      <div class="no-results-icon">⚠️</div>
+      <h3 class="no-results-title">Unable to load tutorials</h3>
+      <p class="no-results-text">The backend failed to fetch tutorials from YouTube. Please set the <code>YT_API_KEY</code> environment variable on the server and restart the app.</p>
+      </div>`;
+  }
+}
+
+
+
+    async function fetchLearningPaths() {
+    try {
+        const resp = await fetch('/api/learning-paths');
+        if (!resp.ok) throw new Error('Failed to fetch learning paths');
+        const data = await resp.json();
+        allPaths = (data.learning_paths || []).map((p, idx) => ({
+            id: p.id || idx + 1,
+            title: p.title || `Path ${idx + 1}`,
+            description: p.description || '',
+            steps: (p.blocks || []).map(block => block.title || block) || [],
+            duration: p.duration || '',
+            totalHours: p.total_hours || '',
+            students: p.students || 0,
+            level: p.level || 'All'
+        }));
+    } catch (e) {
+        console.error('fetchLearningPaths error:', e);
+        allPaths = [];
+    }
+}
+   
+    async function fetchFlowcharts() {
+      // You can add a backend endpoint for real flowcharts. For now fallback demo data:
+      allFlowcharts = {
+        career: [
+          { id: 1, title: 'Web Dev Career', subtitle: 'Front → Back → DevOps', duration: '6-12 months', difficulty: 'Medium', students: 12000,
+            nodes: [{ id: 'n1', name: 'HTML/CSS', x: 80, y: 60, status: 'completed' }, { id: 'n2', name: 'JS', x: 200, y: 60, status: 'current' }, { id: 'n3', name: 'Backend', x: 320, y: 60, status: 'locked'}],
+            connections: [{ from: 'n1', to: 'n2' }, { from: 'n2', to: 'n3'}]
+          }
+        ],
+        skills: [],
+        courses: []
+      };
+    }
+
+    /*********************
+     * Initialization
+     *********************/
+    async function initializeData() {
+      // Fetch tutorials, learning paths and flowcharts
+      await Promise.all([fetchTutorials(), fetchLearningPaths(), fetchFlowcharts()]);
+      renderContent();
+    }
+
+    // run on load
+    window.addEventListener('load', () => {
+      initializeData();
+    });
+
+    /*********************
+     * Section switching
+     *********************/
+    function switchSection(evt, section) {
+      try {
+        currentSection = section;
+        document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
+        if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+        // Show/hide content sections
+        document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+        const el = document.getElementById(section + 'Section');
+        if (el) el.style.display = 'block';
+        renderContent();
+      } catch (e) {
+        console.error('switchSection error', e);
+      }
+    }
+
+    function renderContent() {
+      switch (currentSection) {
+        case 'tutorials': renderTutorials(); break;
+        case 'paths': renderLearningPaths(); break;
+        case 'flowcharts': renderFlowcharts(); break;
+        default: renderTutorials(); break;
+      }
+    }
+
+    /*********************
+     * Renderers
+     *********************/
+  // Categories UI removed
+
+    function renderTutorials() {
+      const tutorialsGrid = document.getElementById('tutorialsGrid');
+
+      if (!filteredTutorials || filteredTutorials.length === 0) {
+        tutorialsGrid.innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">📚</div>
+            <h3 class="no-results-title">No tutorials found</h3>
+            <p class="no-results-text">Try adjusting your search terms or filters to find more tutorials.</p>
+          </div>
+        `;
+        return;
+      }
+
+      tutorialsGrid.innerHTML = filteredTutorials.map(tutorial => {
+        const categoryLabel = (tutorial.category || 'general').toString().replace('-', ' ');
+        const level = (tutorial.level || 'beginner').toString();
+        const durationLabel = tutorial.duration || '';
+        const students = Number(tutorial.students || 0).toLocaleString();
+        const rating = tutorial.rating || 0;
+        const progress = parseFloat(tutorial.progress || 0);
+        const thumb = tutorial.thumbnail
+  ? `<img src="${tutorial.thumbnail}" alt="${escapeHtml(tutorial.title)} thumbnail" style="width:100%;height:100%;object-fit:cover;">`
+  : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;">🎬</div>`;
+        return `
+          <div class="tutorial-card" onclick="openTutorial('${tutorial.id}', '${tutorial.videoId || ''}')">
+            <div class="tutorial-thumbnail">
+              ${thumb}
+              <div class="play-button">▶️</div>
+              ${tutorial.isNew ? '<div style="position: absolute; top: 10px; right: 10px; background: #e74c3c; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">NEW</div>' : ''}
+              ${tutorial.isFeatured ? '<div style="position: absolute; top: 10px; left: 10px; background: #f39c12; color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.7rem; font-weight: 600;">⭐ FEATURED</div>' : ''}
+            </div>
+
+            <div class="tutorial-content">
+              <div class="tutorial-header">
+                <span class="tutorial-category">${categoryLabel.charAt(0).toUpperCase() + categoryLabel.slice(1)}</span>
+                <span class="tutorial-level level-${level}">${level.charAt(0).toUpperCase() + level.slice(1)}</span>
+              </div>
+
+              <h3 class="tutorial-title">${escapeHtml(tutorial.title)}</h3>
+              <p class="tutorial-description">${escapeHtml((tutorial.description || '').slice(0, 180))}</p>
+
+              <div class="tutorial-meta">
+                <div class="tutorial-duration">⏱️ ${durationLabel || '—'}</div>
+                <div class="tutorial-rating">⭐ ${rating} (${students} students)</div>
+              </div>
+
+              ${progress > 0 ? `
+                <div class="tutorial-progress">
+                  <div class="progress-bar" style="width: ${Math.min(100,progress)}%"></div>
+                </div>
+                <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">${progress}% completed</p>
+              ` : ''}
+
+              <div class="tutorial-actions">
+                <button class="action-btn primary-btn" onclick="startTutorial(event, '${tutorial.id}', '${tutorial.videoId || ''}')">
+                  ${progress > 0 ? 'Continue' : 'Start Learning'}
+                </button>
+                <button class="action-btn secondary-btn" onclick="saveTutorial(event, '${tutorial.id}')">💾 Save</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    function renderLearningPaths() {
+    console.log('Rendering learning paths:', allPaths);
+    const pathsContainer = document.getElementById('pathsContainer');
+    if (!allPaths || allPaths.length === 0) {
+        pathsContainer.innerHTML = `
+            <div class="no-results">
+                <h3 class="no-results-title">No learning paths available</h3>
+                <p class="no-results-text">Check back soon for more learning paths.</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Save handlers for tutorials and learning paths
+    async function saveTutorial(evt, tutorialId) {
+      evt.stopPropagation();
+      try {
+        const t = filteredTutorials.find(x => x.id === tutorialId) || allTutorials.find(x => x.id === tutorialId);
+        if (!t) return alert('Tutorial not found');
+        const payload = { title: t.title, description: t.description || '', thumbnail: t.thumbnail || '', external_link: t.videoId ? `https://www.youtube.com/watch?v=${t.videoId}` : '' };
+        const resp = await fetch('/api/save_course', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await resp.json();
+        if (resp.ok) {
+          alert('Saved to My Courses');
+          recordActivity('started', `Saved tutorial "${t.title}"`);
+        } else if (resp.status === 401) {
+          alert('Please sign in to save courses');
+        } else {
+          alert('Failed to save: ' + (data.message || data.error || resp.statusText));
+        }
+      } catch (e) {
+        console.error('Save failed', e);
+        alert('Failed to save course');
+      }
+    }
+
+    async function savePath(evt, pathId) {
+      evt.stopPropagation();
+      try {
+        const p = allPaths.find(x => x.id === pathId);
+        if (!p) return alert('Path not found');
+        const payload = { title: p.title, description: p.description || '', thumbnail: p.thumbnail || '', external_link: p.url || '' };
+        const resp = await fetch('/api/save_course', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await resp.json();
+        if (resp.ok) {
+          alert('Saved to My Courses');
+          recordActivity('started', `Saved learning path "${p.title}"`);
+        } else if (resp.status === 401) {
+          alert('Please sign in to save paths');
+        } else {
+          alert('Failed to save: ' + (data.message || data.error || resp.statusText));
+        }
+      } catch (e) {
+        console.error('Save path failed', e);
+        alert('Failed to save learning path');
+      }
+    }
+
+    pathsContainer.innerHTML = allPaths.map(path => `
+        <div class="path-card">
+            <div class="path-header">
+                <h3 class="path-title">${escapeHtml(path.title)}</h3>
+                <span class="path-duration">${path.duration || ''}</span>
+            </div>
+            <p class="path-description">${escapeHtml(path.description || '')}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-size: 0.9rem; color: #666;">
+                <span>📚 ${path.totalHours || '—'}</span>
+                <span>👥 ${Number(path.students || 0).toLocaleString()} enrolled</span>
+                <span>🎯 ${path.level || 'All'}</span>
+            </div>
+            <div class="path-steps">
+                ${(path.steps || []).map((step, index) => `
+                    <div class="step-item">
+                        <div class="step-number">${index + 1}</div>
+                        <div class="step-title">${escapeHtml(step)}</div>
+                    </div>
+                `).join('')}
+            </div>
+            <div style="margin-top: 25px; display: flex; gap: 15px;">
+                <button class="action-btn primary-btn start-learning-btn" data-path-id="${path.id}" style="flex: 1;">🚀 Start Learning Path</button>
+                <button class="action-btn secondary-btn view-details-btn" data-path-id="${path.id}">📋 View Details</button>
+            </div>  
+        </div>
+    `).join('');
+}    
+    // Assuming this code runs after the buttons are rendered
+// Use event delegation for dynamically-rendered learning path buttons
+document.getElementById('pathsContainer').addEventListener('click', function (e) {
+  const startBtn = e.target.closest('.start-learning-btn');
+  if (startBtn) {
+    e.preventDefault();
+    const pathId = startBtn.getAttribute('data-path-id');
+    startLearningPath(e, pathId);
+    return;
+  }
+  const viewBtn = e.target.closest('.view-details-btn');
+  if (viewBtn) {
+    e.preventDefault();
+    const pathId = viewBtn.getAttribute('data-path-id');
+    viewPathDetails(e, pathId);
+    return;
+  }
+});
+
+    function renderFlowcharts() {
+      const flowchartsContainer = document.getElementById('flowchartsContainer');
+      const current = allFlowcharts[currentFlowchartCategory] || [];
+      if (current.length === 0) {
+        flowchartsContainer.innerHTML = `
+          <div class="no-results">
+            <div class="no-results-icon">📊</div>
+            <h3 class="no-results-title">No flowcharts available</h3>
+            <p class="no-results-text">Check back soon for more learning roadmaps.</p>
+          </div>
+        `;
+        return;
+      }
+      flowchartsContainer.innerHTML = `
+        <div class="flowchart-grid">
+          ${current.map(flowchart => `
+            <div class="flowchart-card" onclick="openFlowchart(event, ${flowchart.id})">
+              <div class="flowchart-header">
+                <h3 class="flowchart-title">${escapeHtml(flowchart.title)}</h3>
+                <p class="flowchart-subtitle">${escapeHtml(flowchart.subtitle || '')}</p>
+                <div class="flowchart-stats">
+                  <span>⏱️ ${flowchart.duration || ''}</span>
+                  <span>📊 ${flowchart.difficulty || ''}</span>
+                  <span>👥 ${Number(flowchart.students || 0).toLocaleString()} students</span>
+                </div>
+              </div>
+              ${generateFlowchartSVG(flowchart)}
+              <div class="flowchart-legend">
+                <div class="legend-item"><div class="legend-color" style="background: #48bb78;"></div><span>Completed</span></div>
+                <div class="legend-item"><div class="legend-color" style="background: #ed8936;"></div><span>Current</span></div>
+                <div class="legend-item"><div class="legend-color" style="background: #a0aec0;"></div><span>Locked</span></div>
+              </div>
+              <div class="flowchart-actions">
+                <button class="flowchart-btn primary" onclick="event.stopPropagation(); startFlowchart(event, ${flowchart.id})">🚀 Start Journey</button>
+                <button class="flowchart-btn secondary" onclick="event.stopPropagation(); viewFlowchartDetails(event, ${flowchart.id})">📋 View Details</button>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function generateFlowchartSVG(flowchart) {
+      const { nodes = [], connections = [] } = flowchart;
+      const svgWidth = 400;
+      const svgHeight = 200;
+      const connectionElements = (connections || []).map(conn => {
+        const fromNode = nodes.find(n => n.id === conn.from);
+        const toNode = nodes.find(n => n.id === conn.to);
+        if (!fromNode || !toNode) return '';
+        const isActive = (fromNode.status === 'completed') && (toNode.status === 'completed' || toNode.status === 'current');
+        return `<line x1="${fromNode.x}" y1="${fromNode.y+25}" x2="${toNode.x}" y2="${toNode.y-25}" class="flowchart-connection ${isActive ? 'active' : ''}" />`;
+      }).join('');
+      const nodeElements = (nodes || []).map(node => {
+        const statusClass = `flowchart-node ${node.status || ''}`;
+        return `<g onclick="selectFlowchartNode('${node.id}')" style="cursor:pointer;">
+                  <circle cx="${node.x}" cy="${node.y}" r="25" class="${statusClass}" />
+                  <text x="${node.x}" y="${node.y}" class="flowchart-text">${escapeHtml(node.name || '')}</text>
+                </g>`;
+      }).join('');
+      return `
+        <svg class="flowchart-svg" viewBox="0 0 ${svgWidth} ${svgHeight}">
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#cbd5e0" />
+            </marker>
+          </defs>
+          ${connectionElements}
+          ${nodeElements}
+        </svg>
+      `;
+    }
+
+    /*********************
+     * Search & Filters
+     *********************/
+    function performSearch() {
+      const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+      filteredTutorials = allTutorials.filter(tut => {
+        const inTitle = (tut.title || '').toLowerCase().includes(searchTerm);
+        const inDesc = (tut.description || '').toLowerCase().includes(searchTerm);
+        const inTags = (tut.tags || []).some(tag => tag.toLowerCase().includes(searchTerm));
+        const inInstructor = (tut.instructor || '').toLowerCase().includes(searchTerm);
+        return inTitle || inDesc || inTags || inInstructor;
+      });
+      applyFilters(); // further filter by selects
+      if (currentSection !== 'tutorials') {
+        // switch to tutorials tab visually
+        const tutorialsBtn = Array.from(document.querySelectorAll('.nav-tab')).find(b => b.textContent.includes('Tutorials'));
+        if (tutorialsBtn) { tutorialsBtn.classList.add('active'); }
+        switchSection({ currentTarget: tutorialsBtn }, 'tutorials');
+      } else {
+        renderTutorials();
+      }
+    }
+
+    function applyFilters() {
+      const level = document.getElementById('levelFilter').value;
+      const duration = document.getElementById('durationFilter').value;
+      const sort = document.getElementById('sortFilter').value;
+
+      let list = filteredTutorials.length ? [...filteredTutorials] : [...allTutorials];
+
+      if (level) {
+        list = list.filter(t => (t.level || '').toString().toLowerCase() === level.toLowerCase());
+      }
+      if (duration) {
+        list = list.filter(t => {
+          const hours = parseFloat(t.duration) || 0;
+          switch (duration) {
+            case 'short': return hours < 1;
+            case 'medium': return hours >= 1 && hours <= 3;
+            case 'long': return hours > 3;
+            default: return true;
+          }
+        });
+      }
+
+      // sorts
+      switch (sort) {
+        case 'newest':
+          list.sort((a,b) => (b.isNew === true) - (a.isNew === true));
+          break;
+        case 'rating':
+          list.sort((a,b) => (b.rating || 0) - (a.rating || 0));
+          break;
+        case 'duration':
+          list.sort((a,b) => (parseFloat(a.duration)||0) - (parseFloat(b.duration)||0));
+          break;
+        case 'popular':
+        default:
+          list.sort((a,b) => (b.students || 0) - (a.students || 0));
+          break;
+      }
+
+      filteredTutorials = list;
+    }
+
+    /*********************
+     * Utilities & Actions
+     *********************/
+    // exploreCategory removed
+
+    function openTutorial(id, videoId) {
+      // open YouTube in new tab if videoId exists, otherwise alert
+      if (videoId) window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+      else alert(`Open tutorial ${id}`);
+    }
+
+    function startTutorial(evt, id, videoId) {
+      if (evt && evt.stopPropagation) evt.stopPropagation();
+      openTutorial(id, videoId);
+    }
+
+    function saveTutorial(evt, id) {
+      if (evt && evt.stopPropagation) evt.stopPropagation();
+      alert(`Tutorial ${id} saved to your library!`);
+      // TODO: call backend to save to user's library
+    }
+
+    /* Replace alert-only handlers with useful actions:
+       - viewPathDetails opens a modal showing path info and steps
+       - startLearningPath opens the first step/resource (YouTube or URL) when available
+    */
+    function startLearningPath(evt, id) {
+      if (evt && evt.stopPropagation) evt.stopPropagation();
+      const path = (allPaths || []).find(p => String(p.id) === String(id));
+      if (!path) { alert('Path not found'); return; }
+      // If this path represents a YouTube playlist (ids often start with 'PL'), open the playlist page
+      if (path.id && typeof path.id === 'string' && /^PL[0-9A-Za-z_-]+$/.test(path.id)) {
+        window.open(`https://www.youtube.com/playlist?list=${encodeURIComponent(path.id)}`, '_blank');
+        return;
+      }
+      // Prefer videos[0].videoId as URL or YouTube id
+      const first = (path.videos && path.videos[0]) || null;
+      if (first && first.videoId) {
+        const vid = String(first.videoId);
+        if (/^https?:\/\//i.test(vid)) {
+          window.open(vid, '_blank');
+          return;
+        }
+        // if looks like a YouTube id (no scheme, short), open youtube
+        window.open(`https://www.youtube.com/watch?v=${encodeURIComponent(vid)}`, '_blank');
+        return;
+      }
+      // If steps include URLs, open the first URL found
+      if (path.steps && path.steps.length) {
+        const urlCandidate = path.steps.find(s => typeof s === 'string' && s.startsWith('http'));
+        if (urlCandidate) { window.open(urlCandidate, '_blank'); return; }
+      }
+      // Fallback: show details modal so user can pick
+      showPathModal(path);
+    }
+
+    function viewPathDetails(evt, id) {
+      if (evt && evt.stopPropagation) evt.stopPropagation();
+      const path = (allPaths || []).find(p => String(p.id) === String(id));
+      if (!path) { alert('Path not found'); return; }
+      showPathModal(path);
+    }
+
+    // Modal helpers
+    function showPathModal(path) {
+      closePathModal();
+      const overlay = document.createElement('div');
+      overlay.id = 'pathModalOverlay';
+      overlay.style.position = 'fixed';
+      overlay.style.left = 0;
+      overlay.style.top = 0;
+      overlay.style.right = 0;
+      overlay.style.bottom = 0;
+      overlay.style.background = 'rgba(0,0,0,0.5)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = 9999;
+
+      const modal = document.createElement('div');
+      modal.style.width = '90%';
+      modal.style.maxWidth = '800px';
+      modal.style.background = 'white';
+      modal.style.borderRadius = '12px';
+      modal.style.padding = '20px';
+      modal.style.boxShadow = '0 10px 40px rgba(0,0,0,0.2)';
+      modal.style.maxHeight = '80%';
+      modal.style.overflow = 'auto';
+
+      const title = document.createElement('h2');
+      title.textContent = path.title || 'Learning Path';
+      title.style.marginTop = '0';
+
+      const desc = document.createElement('p');
+      desc.textContent = path.description || '';
+
+      const meta = document.createElement('div');
+      meta.style.display = 'flex';
+      meta.style.gap = '12px';
+      meta.style.color = '#666';
+      meta.style.marginBottom = '12px';
+      meta.innerHTML = `👥 ${Number(path.students||0).toLocaleString()} enrolled &nbsp; • &nbsp; ${path.totalHours || '—'} total hours`;
+
+  const stepsTitle = document.createElement('h3');
+      stepsTitle.textContent = 'Steps / Resources';
+
+      const stepsList = document.createElement('div');
+      (path.steps || []).forEach((s, idx) => {
+        const item = document.createElement('div');
+        item.style.padding = '8px 10px';
+        item.style.border = '1px solid #eee';
+        item.style.marginBottom = '8px';
+        item.style.borderRadius = '8px';
+        const label = document.createElement('div');
+        label.textContent = (typeof s === 'string') ? s : JSON.stringify(s);
+        label.style.marginBottom = '6px';
+        item.appendChild(label);
+        // If step looks like URL, add open button
+        if (typeof s === 'string' && /^https?:\/\//i.test(s)) {
+          const btn = document.createElement('button');
+          btn.className = 'action-btn primary-btn';
+          btn.textContent = 'Open Resource';
+          btn.onclick = () => window.open(s, '_blank');
+          item.appendChild(btn);
+        }
+        stepsList.appendChild(item);
+      });
+
+      const videosTitle = document.createElement('h3');
+      videosTitle.textContent = 'Videos';
+      const videosList = document.createElement('div');
+      // Player container
+      const playerWrapper = document.createElement('div');
+      playerWrapper.style.marginBottom = '12px';
+      playerWrapper.style.textAlign = 'center';
+      let currentVideoIndex = 0;
+
+      function renderPlayerAt(index, autoplay=false) {
+        playerWrapper.innerHTML = '';
+        const v = (path.videos || [])[index];
+        if (!v) return;
+        const vid = String(v.videoId || '');
+        if (/^https?:\/\//i.test(vid)) {
+          // external URL - open in new tab when play pressed
+          const openBtn = document.createElement('button');
+          openBtn.className = 'action-btn primary-btn';
+          openBtn.textContent = 'Open Resource';
+          openBtn.onclick = () => window.open(vid, '_blank');
+          playerWrapper.appendChild(openBtn);
+        } else {
+          // treat as YouTube id
+          const iframe = document.createElement('iframe');
+          iframe.width = '720';
+          iframe.height = '405';
+          iframe.style.maxWidth = '100%';
+          iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(vid)}?rel=0&modestbranding=1${autoplay ? '&autoplay=1' : ''}`;
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          playerWrapper.appendChild(iframe);
+        }
+      }
+
+      (path.videos || []).forEach((v, idx) => {
+        const item = document.createElement('div');
+        item.style.padding = '8px 10px';
+        item.style.border = '1px solid #eee';
+        item.style.marginBottom = '8px';
+        item.style.borderRadius = '8px';
+        const title = document.createElement('div');
+        title.textContent = v.title || (`Video ${idx+1}`);
+        title.style.fontWeight = '600';
+        const btns = document.createElement('div');
+        btns.style.marginTop = '6px';
+        if (v.videoId) {
+          const vid = String(v.videoId);
+          const openBtn = document.createElement('button');
+          openBtn.className = 'action-btn primary-btn';
+          openBtn.textContent = 'Open';
+          openBtn.onclick = () => {
+            if (/^https?:\/\//i.test(vid)) window.open(vid, '_blank');
+            else window.open(`https://www.youtube.com/watch?v=${encodeURIComponent(vid)}`, '_blank');
+          };
+          btns.appendChild(openBtn);
+        }
+        if (v.thumbnail) {
+          const thumb = document.createElement('img');
+          thumb.src = v.thumbnail;
+          thumb.style.width = '80px';
+          thumb.style.height = '45px';
+          thumb.style.objectFit = 'cover';
+          thumb.style.marginLeft = '8px';
+          btns.appendChild(thumb);
+        }
+        item.appendChild(title);
+        item.appendChild(btns);
+        videosList.appendChild(item);
+      });
+
+      // Navigation controls for videos
+      if ((path.videos || []).length > 0) {
+        const nav = document.createElement('div');
+        nav.style.display = 'flex';
+        nav.style.justifyContent = 'center';
+        nav.style.gap = '8px';
+        nav.style.marginBottom = '12px';
+        const prev = document.createElement('button');
+        prev.className = 'action-btn secondary-btn';
+        prev.textContent = '◀ Prev';
+        prev.onclick = () => { currentVideoIndex = Math.max(0, currentVideoIndex-1); renderPlayerAt(currentVideoIndex, true); };
+        const next = document.createElement('button');
+        next.className = 'action-btn secondary-btn';
+        next.textContent = 'Next ▶';
+        next.onclick = () => { currentVideoIndex = Math.min((path.videos||[]).length-1, currentVideoIndex+1); renderPlayerAt(currentVideoIndex, true); };
+        nav.appendChild(prev);
+        nav.appendChild(next);
+        modal.appendChild(nav);
+        modal.appendChild(playerWrapper);
+        // init player (no autoplay by default)
+        renderPlayerAt(0, false);
+      }
+
+      const actions = document.createElement('div');
+      actions.style.display = 'flex';
+      actions.style.gap = '10px';
+      actions.style.marginTop = '12px';
+      const startBtn = document.createElement('button');
+      startBtn.className = 'action-btn primary-btn';
+      startBtn.textContent = 'Start Path (first resource)';
+      startBtn.onclick = () => startLearningPath(null, path.id);
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'action-btn secondary-btn';
+      closeBtn.textContent = 'Close';
+      closeBtn.onclick = closePathModal;
+      // If path.id looks like a YouTube playlist id, offer an explicit Open Playlist button
+      let playlistBtn = null;
+      if (path.id && typeof path.id === 'string' && /^PL[0-9A-Za-z_-]+$/.test(path.id)) {
+        playlistBtn = document.createElement('button');
+        playlistBtn.className = 'action-btn secondary-btn';
+        playlistBtn.textContent = 'Open Playlist';
+        playlistBtn.onclick = () => window.open(`https://www.youtube.com/playlist?list=${encodeURIComponent(path.id)}`, '_blank');
+        actions.appendChild(playlistBtn);
+      }
+      actions.appendChild(startBtn);
+      actions.appendChild(closeBtn);
+
+      modal.appendChild(title);
+      modal.appendChild(desc);
+      modal.appendChild(meta);
+      modal.appendChild(stepsTitle);
+      modal.appendChild(stepsList);
+      modal.appendChild(videosTitle);
+      modal.appendChild(videosList);
+      modal.appendChild(actions);
+
+      overlay.appendChild(modal);
+      document.body.appendChild(overlay);
+      // close on overlay click
+      overlay.addEventListener('click', function (ev) { if (ev.target === overlay) closePathModal(); });
+    }
+
+    function closePathModal() {
+      const existing = document.getElementById('pathModalOverlay');
+      if (existing) existing.remove();
+    }
+    function openFlowchart(evt, id) { if (evt && evt.stopPropagation) evt.stopPropagation(); alert(`Opening detailed view for flowchart ${id}...`); }
+    function startFlowchart(evt, id) { if (evt && evt.stopPropagation) evt.stopPropagation(); alert(`Starting learning journey for flowchart ${id}...`); }
+    function viewFlowchartDetails(evt, id) { if (evt && evt.stopPropagation) evt.stopPropagation(); alert(`Viewing detailed breakdown for flowchart ${id}...`); }
+    function selectFlowchartNode(nodeId) { alert(`Selected node: ${nodeId}. View related tutorials and resources.`); }
+
+    function switchFlowchartCategory(evt, category) {
+      currentFlowchartCategory = category;
+      document.querySelectorAll('.flowchart-tab').forEach(btn => btn.classList.remove('active'));
+      if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+      renderFlowcharts();
+    }
+
+
+
+
+
+
+    
+    // safe HTML escape
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"'`=\/]/g, s => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;', '/':'&#x2F;'}[s]));
+    }
+
+    /*********************
+     * Filter event listeners
+     *********************/
+    // categoryFilter removed
+
+    document.getElementById('levelFilter').addEventListener('change', () => { applyFilters(); renderTutorials(); });
+    document.getElementById('durationFilter').addEventListener('change', () => { applyFilters(); renderTutorials(); });
+    document.getElementById('sortFilter').addEventListener('change', () => { applyFilters(); renderTutorials(); });
+
+    // Search on Enter
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') performSearch();
+    });
+    document.getElementById('searchBtn').addEventListener('click', performSearch);
+
+  </script>
+
+  <!-- (original iframe/cloudflare snippet removed for clarity - keep if you intentionally used it previously) -->
+</body>
+</html>

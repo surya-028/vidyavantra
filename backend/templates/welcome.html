@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome - Vidyavantra</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 8s ease infinite;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      position: relative;
+    }
+
+    /* Floating particles background */
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) { width: 8px; height: 8px; left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { width: 12px; height: 12px; left: 20%; animation-delay: 1s; }
+    .particle:nth-child(3) { width: 6px; height: 6px; left: 30%; animation-delay: 2s; }
+    .particle:nth-child(4) { width: 10px; height: 10px; left: 40%; animation-delay: 0.5s; }
+    .particle:nth-child(5) { width: 14px; height: 14px; left: 50%; animation-delay: 1.5s; }
+    .particle:nth-child(6) { width: 8px; height: 8px; left: 60%; animation-delay: 2.5s; }
+    .particle:nth-child(7) { width: 12px; height: 12px; left: 70%; animation-delay: 3s; }
+    .particle:nth-child(8) { width: 6px; height: 6px; left: 80%; animation-delay: 0.8s; }
+    .particle:nth-child(9) { width: 10px; height: 10px; left: 90%; animation-delay: 1.8s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .welcome-container {
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .logo-container {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: bold;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: logoAnimation 3s ease-in-out forwards;
+      box-shadow: 0 0 30px rgba(255,255,255,0.3), 0 0 60px rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    .logo-text {
+      z-index: 1;
+      position: relative;
+    }
+
+    @keyframes logoAnimation {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.3) rotate(-180deg); 
+        filter: blur(10px);
+      }
+      50% { 
+        opacity: 1; 
+        transform: scale(1.1) rotate(0deg); 
+        filter: blur(0px);
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1) rotate(0deg); 
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .welcome-text {
+      font-size: 3rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: textSlideIn 2s ease forwards 1.5s;
+      text-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: textSlideIn 2s ease forwards 2s;
+      color: rgba(255,255,255,0.9);
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    @keyframes textSlideIn {
+      0% { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.9); 
+      }
+      100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      }
+    }
+
+    .loading-container {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2.5s;
+    }
+
+    .loading-bar {
+      width: 300px;
+      height: 4px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 20px auto;
+    }
+
+    .loading-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+      border-radius: 2px;
+      animation: loadingProgress 3s ease-in-out forwards;
+      transform: translateX(-100%);
+    }
+
+    @keyframes loadingProgress {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(0%); }
+    }
+
+    .loading-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 10px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .logo {
+        width: 150px;
+        height: 150px;
+        font-size: 3rem;
+      }
+      
+      .welcome-text {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+      
+      .loading-bar {
+        width: 250px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        width: 120px;
+        height: 120px;
+        font-size: 2.5rem;
+      }
+      
+      .welcome-text {
+        font-size: 1.5rem;
+      }
+      
+      .loading-bar {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Home link removed from welcome page per request -->
+  <!-- Floating particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="welcome-container">
+    <div class="logo-container">
+      <div class="logo">
+        <span class="logo-text">VV</span>
+      </div>
+    </div>
+    
+    <div class="welcome-text">Welcome to Vidyavantra</div>
+    <div class="subtitle">Your Journey to Knowledge Begins Here</div>
+    
+    <div class="loading-container">
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <div class="loading-text">Loading your experience...</div>
+    </div>
+  </div>
+
+  <script>
+    // Redirect to home after 3 seconds
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 5000);
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96ef6e4093288022',t:'MTc1NTE2Mzc5Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

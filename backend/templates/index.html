@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidyavantra - Your Gateway to Success</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Top Notification Bar */
+    .notification-bar {
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      color: white;
+      padding: 8px 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .notification-text {
+      white-space: nowrap;
+      animation: scroll 20s linear infinite;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Header */
+    .header {
+      background: rgba(240, 230, 230, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+  .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+  .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Slide Menu */
+    .slide-menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      transition: right 0.3s ease;
+      z-index: 1000;
+      padding: 80px 30px 30px;
+    }
+
+    .slide-menu.active {
+      right: 0;
+    }
+
+    .slide-menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px 0;
+      font-size: 1.1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .slide-menu a:hover {
+      padding-left: 20px;
+      color: #f0f0f0;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease 0.3s both;
+      opacity: 0.9;
+    }
+
+ /* Floating Chat Button */
+    .chat-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+    }
+
+    .chat-toggle.active {
+      transform: rotate(45deg);
+    }
+
+    /* Main Chat Container */
+    .chatbot-container {
+      width: 100%;
+      max-width: 450px;
+      height: 600px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      z-index: 1000;
+      transform: translateY(100%) scale(0.8);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .chatbot-container.active {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    /* Chat Header */
+    .chat-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    .bot-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .bot-avatar {
+      position: relative;
+    }
+
+    .avatar-circle {
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .status-indicator {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 12px;
+      height: 12px;
+      background: #48bb78;
+      border: 2px solid white;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .bot-details h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .bot-status {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .header-btn {
+      width: 35px;
+      height: 35px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* Chat Messages */
+    .chat-messages {
+      flex: 1;
+      padding: 25px 20px;
+      overflow-y: auto;
+      background: #f8f9fa;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    .message {
+      display: flex;
+      gap: 12px;
+      max-width: 85%;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message.user-message {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+
+    .message-avatar {
+      flex-shrink: 0;
+    }
+
+    .bot-avatar-small {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .user-avatar-small {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.8rem;
+      box-shadow: 0 3px 10px rgba(79, 172, 254, 0.3);
+    }
+
+    .message-content {
+      flex: 1;
+    }
+
+    .message-bubble {
+      padding: 15px 18px;
+      border-radius: 18px;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      position: relative;
+      word-wrap: break-word;
+    }
+
+    .bot-bubble {
+      background: white;
+      border: 1px solid #e1e5e9;
+      border-bottom-left-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .user-bubble {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-bottom-right-radius: 6px;
+      box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .message-time {
+      font-size: 0.7rem;
+      color: #999;
+      margin-top: 6px;
+      text-align: left;
+    }
+
+    .user-message .message-time {
+      text-align: right;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    /* Quick Actions */
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .quick-btn {
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+      color: #667eea;
+      border: 1px solid rgba(102, 126, 234, 0.2);
+      padding: 8px 12px;
+      border-radius: 15px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .quick-btn:hover {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Typing Indicator */
+    .typing-indicator {
+      display: flex;
+      gap: 12px;
+      max-width: 85%;
+      align-items: flex-end;
+    }
+
+    .typing-bubble {
+      background: white;
+      border: 1px solid #e1e5e9;
+      border-radius: 18px;
+      border-bottom-left-radius: 6px;
+      padding: 15px 20px;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #667eea;
+      animation: typing 1.4s infinite ease-in-out;
+    }
+
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    .typing-dot:nth-child(3) { animation-delay: 0s; }
+
+    @keyframes typing {
+      0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      40% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    /* Chat Input */
+    .chat-input-container {
+      background: white;
+      border-top: 1px solid #e1e5e9;
+      padding: 20px;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      background: #f8f9fa;
+      border: 2px solid #e1e5e9;
+      border-radius: 25px;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: white;
+    }
+
+    .input-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .input-btn {
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      border-radius: 50%;
+      color: #666;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .input-btn:hover {
+      background: #e1e5e9;
+      color: #333;
+      transform: scale(1.1);
+    }
+
+    .chat-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 0.9rem;
+      padding: 8px 0;
+      color: #333;
+      resize: none;
+      max-height: 100px;
+      min-height: 20px;
+      line-height: 1.4;
+      font-family: inherit;
+    }
+
+    .chat-input::placeholder {
+      color: #999;
+    }
+
+    .send-btn {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .send-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }/* File Upload */
+    .file-upload {
+      display: none;
+    }
+
+    .upload-preview {
+      background: #f0f0f0;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px 0;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .upload-preview.show {
+      display: flex;
+    }
+
+    /* Welcome Message */
+    .welcome-message {
+      text-align: center;
+      color: #666;
+      font-size: 0.85rem;
+      margin: 20px 0;
+    }
+
+    .welcome-title {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .chatbot-container {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 20px);
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        border-radius: 15px;
+      }
+
+      .chat-toggle {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+      }
+
+      .chat-messages {
+        padding: 20px 15px;
+      }
+
+      .message {
+        max-width: 90%;
+      }
+    }
+
+    /* Sound toggle */
+    .sound-enabled {
+      color: #48bb78 !important;
+    }
+
+    /* Notification badge */
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      background: #ff4757;
+      border-radius: 50%;
+      color: white;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      animation: bounce 0.6s ease infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+
+
+    /* News Slideshow */
+    .news-slideshow {
+      width: 100%;
+      max-width: 600px;
+      height: 300px;
+      margin: 40px auto;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: end;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slide-content {
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      width: 100%;
+      padding: 30px 20px 20px;
+      color: white;
+    }
+
+    .slide h3 {
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    .slide p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* Slideshow Dots */
+    .slideshow-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: white;
+      transform: scale(1.2);
+    }
+
+    .dot:hover {
+      background: rgba(255,255,255,0.7);
+    }
+
+    /* Auth Buttons */
+    .auth-buttons {
+      display: flex;
+      gap: 20px;
+      margin-top: 30px;
+      animation: fadeInUp 1s ease 0.6s both;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: white;
+      color: rgb(71, 124, 238);
+      border: 2px solid rgba(255, 255, 255, 0.274);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #667eea;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: transparent;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .btn-accent {
+      background: linear-gradient(45deg, #ff6b6b, #feca57);
+      color: white;
+      border: 2px solid transparent;
+    }
+
+    .btn-accent:hover {
+      background: linear-gradient(45deg, #ff5252, #ff9f43);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      margin: 0;
+      max-width: 100%;
+      padding: 80px 20px;
+    }
+
+    .testimonials-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .testimonial {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.5s ease-in-out;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .testimonial.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .testimonial.prev {
+      transform: translateX(-100%);
+    }
+
+    .testimonial-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 30px;
+      font-style: italic;
+      position: relative;
+    }
+
+    .testimonial-content p::before {
+      content: '"';
+      font-size: 4rem;
+      color: #667eea;
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      opacity: 0.3;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .author-info h4 {
+      margin: 0;
+      color: #333;
+      font-size: 1.1rem;
+    }
+
+    .author-info span {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Sections */
+    .section {
+      padding: 80px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 50px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .about-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(102, 126, 234, 0.1);
+    }
+
+    .about-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .about-card .icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+    }
+
+    .about-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .about-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* FAQ Section */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: white;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 25px 30px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: linear-gradient(45deg, #5a6fd8, #6a4190);
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: #f8f9fa;
+    }
+
+    .faq-answer.active {
+      max-height: 200px;
+      padding: 25px 30px;
+    }
+
+    .faq-answer p {
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Contact Footer */
+    .contact-footer {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .contact-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .contact-footer h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .contact-item {
+      background: rgba(255,255,255,0.1);
+      padding: 30px 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact-item .icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .contact-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-item p {
+      opacity: 0.9;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .auth-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      .testimonials-container {
+        height: 350px;
+      }
+      .testimonial {
+        padding: 30px 20px;
+      }
+      .news-slideshow {
+        height: 250px;
+      }
+      .section h2 {
+        font-size: 2rem;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .news-slideshow {
+        height: 200px;
+      }
+      .faq-question {
+        padding: 20px;
+      }
+      .faq-answer.active {
+        padding: 20px;
+      }
+    }
+
+    /* Chatbot specific styles from chatbot.html */
+    .chat-button {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      animation: pulse 2s infinite;
+    }
+
+    .chat-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); }
+      50% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6); }
+      100% { box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); }
+    }
+
+    .chat-widget {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 380px;
+      height: 500px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      display: none;
+      flex-direction: column;
+      z-index: 1001;
+      animation: slideUp 0.3s ease;
+    }
+
+    .chat-widget.open {
+      display: flex;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .chat-header {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bot-avatar {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .bot-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 2px;
+    }
+
+    .bot-status {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.3; }
+    }
+
+    .close-chat {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 50%;
+      transition: background 0.3s ease;
+    }
+
+    .close-chat:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .message {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .message.user {
+      flex-direction: row-reverse;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .message-avatar.bot {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+    }
+
+    .message-avatar.user {
+      background: #e9ecef;
+      color: #666;
+    }
+
+    .message-content {
+      max-width: 70%;
+      padding: 12px 16px;
+      border-radius: 18px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .message.bot .message-content {
+      background: #f1f3f4;
+      color: #333;
+      border-bottom-left-radius: 6px;
+    }
+
+    .message.user .message-content {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border-bottom-right-radius: 6px;
+    }
+
+    .message-time {
+      font-size: 0.7rem;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #f1f3f4;
+      border-radius: 18px;
+      border-bottom-left-radius: 6px;
+      max-width: 70%;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: #999;
+      border-radius: 50%;
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-10px); }
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .quick-action {
+      background: white;
+      border: 2px solid #e1e5e9;
+      color: #667eea;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quick-action:hover {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    .chat-input {
+      padding: 20px;
+      border-top: 1px solid #e1e5e9;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .input-container {
+      flex: 1;
+      position: relative;
+    }
+
+    .chat-input input {
+      width: 100%;
+      padding: 12px 45px 12px 15px;
+      border: 2px solid #e1e5e9;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+      resize: none;
+    }
+
+    .chat-input input:focus {
+      border-color: #667eea;
+    }
+
+    .attachment-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 4px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .attachment-btn:hover {
+      background: #f1f3f4;
+      color: #667eea;
+    }
+
+    .send-btn {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    @media (max-width: 768px) {
+      .chat-widget {
+        width: calc(100vw - 40px);
+        height: calc(100vh - 140px);
+        right: 20px;
+        bottom: 90px;
+      }
+      
+      .demo-content {
+        padding: 20px;
+        margin-bottom: 120px;
+      }
+      
+      .demo-features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .chat-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .chat-widget {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 100px);
+        right: 10px;
+        bottom: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Notification Bar -->
+  <div class="notification-bar">
+    <div class="notification-text">
+      🔥 Latest Jobs & News Updates • New Startup Opportunities Available • Resume Builder Now Live • Join 10,000+ Success Stories
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="nav-container">
+      <div class="logo">Vidyavantra</div>
+      <div class="auth-buttons" id="authButtons">
+        <a href="/login" class="btn btn-primary">Login</a>
+        <a href="/register" class="btn btn-secondary">Register</a>
+      </div>
+      <div class="nav-user" id="navUser" style="display:none;margin-right:8px;background:#f3f2fa;padding:3px 14px 3px 10px;border-radius:12px;box-shadow:0 1px 4px #e0e0e0;font-weight:700;font-size:1.08rem;color:#4a3fa3;white-space:nowrap;">User</div>
+      <div class="hamburger" id="hamburgerMenu" onclick="toggleMenu()" style="display:none;">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+  </header>
+
+  <!-- Slide Menu -->
+  <div class="slide-menu" id="slideMenu">
+  <a href="/">🏠 Home</a>
+  <a href="/dashboard">📊 Dashboard</a>
+  <a href="/news">📰 News</a>
+  <a href="/chatbot">🤖chatbot</a>
+  <a href="/tutorial">🎓 Tutorials</a>
+  <a href="/resume">📄Resume Builder</a>
+  <a href="#" id="logoutBtn" style="display:none;color:#ffffff;font-weight:600;">🚪 Logout</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Welcome to Vidyavantra</h1>
+      <p>Your Gateway to Career Success, Latest News, and Entrepreneurial Opportunities</p>
+     <!-- News Slideshow -->
+      <div class="news-slideshow">
+        <div class="slide active" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%23667eea&quot; width=&quot;400&quot; height=&quot;300&quot;/><text x=&quot;200&quot; y=&quot;150&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;24&quot; font-family=&quot;Arial&quot;>Tech Jobs 2024</text></svg>');">
+          <div class="slide-content">
+            <h3>Latest Tech Job Opportunities</h3>
+            <p>Discover thousands of new job openings in technology sector</p>
+          </div>
+        </div>
+        <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%23764ba2&quot; width=&quot;400&quot; height=&quot;300&quot;/><text x=&quot;200&quot; y=&quot;150&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;24&quot; font-family=&quot;Arial&quot;>Startup News</text></svg>');">
+          <div class="slide-content">
+            <h3>Startup Success Stories</h3>
+            <p>Learn from entrepreneurs who built million-dollar companies</p>
+          </div>
+        </div>
+        <div class="slide" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 400 300&quot;><rect fill=&quot;%23f093fb&quot; width=&quot;400&quot; height=&quot;300&quot;/><text x=&quot;200&quot; y=&quot;150&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;24&quot; font-family=&quot;Arial&quot;>Market Trends</text></svg>');">
+          <div class="slide-content">
+            <h3>Market Trends & Analysis</h3>
+            <p>Stay updated with the latest industry trends and insights</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slideshow Dots -->
+      <div class="slideshow-dots">
+        <span class="dot active" onclick="currentSlideIndex(0)"></span>
+        <span class="dot" onclick="currentSlideIndex(1)"></span>
+        <span class="dot" onclick="currentSlideIndex(2)"></span>
+      </div>
+
+      <div class="auth-buttons">
+  <a href="/login" class="btn btn-primary hero-login-btn">Login</a>
+  <a href="/register" class="btn btn-secondary hero-register-btn">Register</a>
+  <a href="#what-we-offer" class="btn btn-accent" id="getStartedBtn">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section">
+    <h2>What Our Users Say</h2>
+    <div class="testimonials-container">
+      <div class="testimonial active">
+        <div class="testimonial-content">
+          <p>"Vidyavantra helped me land my dream job at a top tech company. The resume builder and job matching features are incredible!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👨‍💻</div>
+            <div class="author-info">
+              <h4>Rahul Sharma</h4>
+              <span>Software Engineer at Google</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"The startup ecosystem here is amazing. I connected with investors and got funding for my fintech startup within 3 months!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👩‍💼</div>
+            <div class="author-info">
+              <h4>Priya Patel</h4>
+              <span>Founder & CEO, PayNext</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"The learning resources and tutorials helped me transition from marketing to data science. Now I'm working at a Fortune 500 company!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👨‍🎓</div>
+            <div class="author-info">
+              <h4>Amit Kumar</h4>
+              <span>Data Scientist at Microsoft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"Vidyavantra's networking events and community helped me build valuable connections. It's more than just a job portal!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👩‍🚀</div>
+            <div class="author-info">
+              <h4>Sneha Reddy</h4>
+              <span>Product Manager at Flipkart</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"The latest news and market insights keep me ahead of industry trends. It's my go-to platform for career growth!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">👨‍💼</div>
+            <div class="author-info">
+              <h4>Vikash Singh</h4>
+              <span>Business Analyst at Deloitte</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="what-we-offer">
+    <h2>What We Offer</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="icon">💼</div>
+        <h3>Job Opportunities</h3>
+        <p>Access thousands of job listings from top companies. Filter by location, salary, and experience level to find your perfect match.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🚀</div>
+        <h3>Startup Ecosystem</h3>
+        <p>Connect with entrepreneurs, investors, and mentors. Get funding opportunities and guidance to launch your startup successfully.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">📄</div>
+        <h3>Resume Builder</h3>
+        <p>Create professional resumes with our AI-powered builder. Choose from multiple templates and get expert tips for better results.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">📰</div>
+        <h3>Latest News</h3>
+        <p>Stay informed with curated news from technology, business, and career development. Never miss important industry updates.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🎓</div>
+        <h3>Learning Resources</h3>
+        <p>Access tutorials, courses, and skill development programs. Learn from industry experts and advance your career.</p>
+      </div>
+      <div class="about-card">
+        <div class="icon">🤝</div>
+        <h3>Networking</h3>
+        <p>Build professional connections with like-minded individuals. Join communities and participate in industry events.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          How do I create an account on Vidyavantra?
+        </div>
+        <div class="faq-answer">
+          <p>Simply click the "Register" button, fill in your details including name, email, and password. Verify your email address and you're ready to explore all our features!</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Is the resume builder really free?
+        </div>
+        <div class="faq-answer">
+          <p>Yes! Our basic resume builder is completely free. You can create, edit, and download your resume without any charges. Premium templates and advanced features are available with our paid plans.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          How often are job listings updated?
+        </div>
+        <div class="faq-answer">
+          <p>Our job listings are updated in real-time. We partner with companies and job boards to ensure you get the latest opportunities as soon as they're posted.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          Can I get funding for my startup through Vidyavantra?
+        </div>
+        <div class="faq-answer">
+          <p>We connect startups with potential investors and provide resources for funding applications. While we don't directly provide funding, we facilitate connections with angel investors and VCs.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          What kind of tutorials and courses are available?
+        </div>
+        <div class="faq-answer">
+          <p>We offer tutorials on programming, digital marketing, business development, and career skills. Content ranges from beginner to advanced levels, created by industry experts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer class="contact-footer">
+    <div class="contact-content">
+      <h2>Get In Touch</h2>
+      <p>Ready to accelerate your career? Contact us today!</p>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="icon">📧</div>
+          <h3>Email Us</h3>
+          <p>support@vidyavantra.com<br>careers@vidyavantra.com</p>
+        </div>
+        
+        <div class="contact-item">
+          <div class="icon">📱</div>
+          <h3>Call Us</h3>
+          <p>+91 63053 74609<br>+91 75690 23459</p>
+        </div>
+        
+        <div class="contact-item">
+          <div class="icon">🏢</div>
+          <h3>Visit Us</h3>
+          <p>Vidyavantra HQ<br>M.B.T.S GOVT.POLYTECHNIC guntur, India</p>
+        </div>
+        
+        <div class="contact-item">
+          <div class="icon">🌐</div>
+          <h3>Follow Us</h3>
+          <p>LinkedIn | Twitter<br>Instagram | Facebook</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Button -->
+  <button class="chat-button" id="chatButton">💬</button>
+
+  <!-- Chat Widget -->
+  <div class="chat-widget" id="chatWidget">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="bot-avatar">🤖</div>
+        <div class="bot-info">
+          <h3>Vidya Assistant</h3>
+          <div class="bot-status">
+            <span class="status-dot"></span>
+            Online
+          </div>
+        </div>
+      </div>
+      <button class="close-chat" id="closeChat">×</button>
+    </div>
+
+    <!-- Chat Messages -->
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot">
+        <div class="message-avatar bot">🤖</div>
+        <div>
+          <div class="message-content">
+            Hi there! 👋 I'm Vidya, your AI learning assistant. I'm here to help you with:
+            <div class="quick-actions">
+              <button class="quick-action" onclick="sendQuickMessage('Course recommendations')">📚 Course recommendations</button>
+              <button class="quick-action" onclick="sendQuickMessage('Technical support')">🔧 Technical support</button>
+              <button class="quick-action" onclick="sendQuickMessage('Study guidance')">📖 Study guidance</button>
+              <button class="quick-action" onclick="sendQuickMessage('Platform help')">❓ Platform help</button>
+            </div>
+          </div>
+          <div class="message-time">Just now</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Input -->
+    <div class="chat-input">
+      <div class="input-container">
+        <input type="text" id="messageInput" placeholder="Type your message..." maxlength="500">
+        <button class="attachment-btn" onclick="handleAttachment()">📎</button>
+      </div>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
+    </div>
+    </div>
+  <script>
+      // --- LOGIN STATE LOGIC ---
+
+      function updateNavForUser(user) {
+        const authButtons = document.getElementById('authButtons');
+        const navUser = document.getElementById('navUser');
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const logoutBtn = document.getElementById('logoutBtn');
+        // Hero login/register
+        const heroLoginBtn = document.querySelector('.hero-login-btn');
+        const heroRegisterBtn = document.querySelector('.hero-register-btn');
+        if (user && user.first_name) {
+          // Remove login/register buttons in nav
+          if(authButtons) authButtons.innerHTML = '';
+          if(navUser) {
+            navUser.style.display = 'inline-block';
+            navUser.innerHTML = `${user.first_name} ${user.last_name ? user.last_name : ''}`;
+          }
+          if(hamburgerMenu) hamburgerMenu.style.display = 'flex';
+          if(logoutBtn) logoutBtn.style.display = 'block';
+          // Hide hero login/register
+          if(heroLoginBtn) heroLoginBtn.style.display = 'none';
+          if(heroRegisterBtn) heroRegisterBtn.style.display = 'none';
+        } else {
+          // Show login/register
+          if(authButtons) authButtons.innerHTML = '<a href="/login" class="btn btn-primary">Login</a> <a href="/register" class="btn btn-secondary">Register</a>';
+          if(navUser) navUser.style.display = 'none';
+          if(hamburgerMenu) hamburgerMenu.style.display = 'none';
+          if(logoutBtn) logoutBtn.style.display = 'none';
+          // Show hero login/register
+          if(heroLoginBtn) heroLoginBtn.style.display = 'inline-block';
+          if(heroRegisterBtn) heroRegisterBtn.style.display = 'inline-block';
+        }
+      }
+      // Logout logic
+      document.addEventListener('DOMContentLoaded', function() {
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch('/api/logout', {method: 'POST', credentials: 'include'})
+              .then(() => { window.location.href = '/'; });
+          });
+        }
+      });
+
+      function fetchUserAndUpdateNav() {
+        fetch('/api/user', {credentials: 'include'})
+          .then(r => {
+            if (r.ok) return r.json();
+            throw new Error('Not logged in');
+          })
+          .then(user => updateNavForUser(user))
+          .catch(() => updateNavForUser(null));
+      }
+
+      window.addEventListener('DOMContentLoaded', fetchUserAndUpdateNav);
+
+      // Hamburger Menu Toggle
+    function toggleMenu() {
+      const hamburger = document.querySelector('.hamburger');
+      const slideMenu = document.getElementById('slideMenu');
+      
+      hamburger.classList.toggle('active');
+      slideMenu.classList.toggle('active');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const hamburger = document.querySelector('.hamburger');
+      const slideMenu = document.getElementById('slideMenu');
+      
+      if (!hamburger.contains(event.target) && !slideMenu.contains(event.target)) {
+        hamburger.classList.remove('active');
+        slideMenu.classList.remove('active');
+      }
+    });
+
+    // News Slideshow
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    
+    function currentSlideIndex(index) {
+      currentSlide = index;
+      showSlide(currentSlide);
+    }
+    
+    // Auto-advance slides every 4 seconds
+    setInterval(nextSlide, 4000);
+
+    // Testimonials Slideshow
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+    
+    function showTestimonial(index) {
+      testimonials.forEach((testimonial, i) => {
+        testimonial.classList.remove('active', 'prev');
+        if (i === index) {
+          testimonial.classList.add('active');
+        } else if (i < index) {
+          testimonial.classList.add('prev');
+        }
+      });
+    }
+    
+    function nextTestimonial() {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+    
+    // Auto-advance testimonials every 3 seconds
+    setInterval(nextTestimonial, 3000);
+
+    // FAQ Toggle
+    function toggleFAQ(element) {
+      const answer = element.nextElementSibling;
+      const isActive = element.classList.contains('active');
+      
+      // Close all other FAQs
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.classList.remove('active');
+        q.nextElementSibling.classList.remove('active');
+      });
+      
+      // Toggle current FAQ
+      if (!isActive) {
+        element.classList.add('active');
+        answer.classList.add('active');
+      }
+    }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+        
+        // Close mobile menu if open
+        document.querySelector('.hamburger').classList.remove('active');
+        document.getElementById('slideMenu').classList.remove('active');
+      });
+    });
+
+    // Add scroll effect to cards
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards
+    document.querySelectorAll('.about-card, .faq-item').forEach(card => {
+      observer.observe(card);
+    });
+
+    // Chatbot specific JavaScript from chatbot.html
+    const chatButton = document.getElementById('chatButton');
+    const chatWidget = document.getElementById('chatWidget');
+    const closeChat = document.getElementById('closeChat');
+    const chatMessages = document.getElementById('chatMessages');
+    const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    let isTyping = false;
+
+    // Chat widget toggle
+    chatButton.addEventListener('click', function() {
+      chatWidget.classList.add('open');
+      messageInput.focus();
+    });
+
+    closeChat.addEventListener('click', function() {
+      chatWidget.classList.remove('open');
+    });
+
+    // Send message on Enter key
+    messageInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // Send message function
+    function sendMessage() {
+      const message = messageInput.value.trim();
+      if (!message || isTyping) return;
+
+      // Add user message
+      addMessage(message, 'user');
+      messageInput.value = '';
+
+      // Show typing indicator and get bot response
+      showTypingIndicator();
+      setTimeout(() => {
+        hideTypingIndicator();
+        const botResponse = getBotResponse(message);
+        addMessage(botResponse.text, 'bot', botResponse.actions);
+      }, 1500 + Math.random() * 1000);
+    }
+
+    // Quick message function
+    function sendQuickMessage(message) {
+      addMessage(message, 'user');
+      showTypingIndicator();
+      setTimeout(() => {
+        hideTypingIndicator();
+        const botResponse = getBotResponse(message);
+        addMessage(botResponse.text, 'bot', botResponse.actions);
+      }, 1000);
+    }
+
+    // Add message to chat
+    function addMessage(text, sender, actions = []) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}`;
+      
+      const avatar = document.createElement('div');
+      avatar.className = `message-avatar ${sender}`;
+      avatar.textContent = sender === 'bot' ? '🤖' : '👤';
+      
+      const contentWrapper = document.createElement('div');
+      
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.innerHTML = text;
+      
+      const time = document.createElement('div');
+      time.className = 'message-time';
+      time.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      
+      contentWrapper.appendChild(content);
+      contentWrapper.appendChild(time);
+      
+      // Add quick actions if provided
+      if (actions && actions.length > 0) {
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'quick-actions';
+        actions.forEach(action => {
+          const actionBtn = document.createElement('button');
+          actionBtn.className = 'quick-action';
+          actionBtn.textContent = action.text;
+          actionBtn.onclick = () => sendQuickMessage(action.value);
+          actionsDiv.appendChild(actionBtn);
+        });
+        contentWrapper.appendChild(actionsDiv);
+      }
+      
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(contentWrapper);
+      
+      chatMessages.appendChild(messageDiv);
+      scrollToBottom();
+    }
+
+    // Show typing indicator
+    function showTypingIndicator() {
+      if (isTyping) return;
+      isTyping = true;
+      
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message bot';
+      typingDiv.id = 'typingIndicator';
+      
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar bot';
+      avatar.textContent = '🤖';
+      
+      const indicator = document.createElement('div');
+      indicator.className = 'typing-indicator';
+      indicator.innerHTML = `
+        <span>Vidya is typing</span>
+        <div class="typing-dots">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      `;
+      
+      typingDiv.appendChild(avatar);
+      typingDiv.appendChild(indicator);
+      
+      chatMessages.appendChild(typingDiv);
+      scrollToBottom();
+    }
+
+    // Hide typing indicator
+    function hideTypingIndicator() {
+      const indicator = document.getElementById('typingIndicator');
+      if (indicator) {
+        indicator.remove();
+      }
+      isTyping = false;
+    }
+
+    // Scroll to bottom
+    function scrollToBottom() {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Bot response logic
+    function getBotResponse(message) {
+      const lowerMessage = message.toLowerCase();
+      
+      // Course recommendations
+      if (lowerMessage.includes('course') || lowerMessage.includes('recommend') || lowerMessage.includes('learn')) {
+        return {
+          text: "🎯 I'd be happy to recommend courses! Based on current trends, here are some popular options:<br><br>• <strong>Python for Data Science</strong> - Great for beginners<br>• <strong>React Development</strong> - High demand skill<br>• <strong>Digital Marketing</strong> - Growing field<br>• <strong>UI/UX Design</strong> - Creative and technical<br><br>What area interests you most?",
+          actions: [
+            { text: "🐍 Python", value: "Tell me about Python courses" },
+            { text: "⚛️ React", value: "Tell me about React courses" },
+            { text: "📊 Marketing", value: "Tell me about marketing courses" },
+            { text: "🎨 Design", value: "Tell me about design courses" }
+          ]
+        };
+      }
+      
+      // Technical support
+      if (lowerMessage.includes('technical') || lowerMessage.includes('support') || lowerMessage.includes('help') || lowerMessage.includes('problem') || lowerMessage.includes('issue')) {
+        return {
+          text: "🔧 I'm here to help with technical issues! Common solutions:<br><br>• <strong>Login problems:</strong> Clear browser cache and cookies<br>• <strong>Video not playing:</strong> Check internet connection and try different browser<br>• <strong>Progress not saving:</strong> Ensure you're logged in and complete modules fully<br><br>What specific issue are you experiencing?",
+          actions: [
+            { text: "🔐 Login issues", value: "I'm having login problems" },
+            { text: "📹 Video problems", value: "Videos won't play" },
+            { text: "💾 Progress issues", value: "My progress isn't saving" },
+            { text: "👨‍💻 Contact human support", value: "I need to speak with a human" }
+          ]
+        };
+      }
+      
+      // Study guidance
+      if (lowerMessage.includes('study') || lowerMessage.includes('guidance') || lowerMessage.includes('schedule') || lowerMessage.includes('plan')) {
+        return {
+          text: "📖 Here's my study guidance for effective learning:<br><br>• <strong>Set a schedule:</strong> 30-60 minutes daily is better than long sessions<br>• <strong>Take notes:</strong> Write down key concepts and examples<br>• <strong>Practice regularly:</strong> Apply what you learn immediately<br>• <strong>Join discussions:</strong> Engage with the community<br><br>Would you like a personalized study plan?",
+          actions: [
+            { text: "📅 Create study schedule", value: "Help me create a study schedule" },
+            { text: "📝 Note-taking tips", value: "Give me note-taking tips" },
+            { text: "🎯 Set learning goals", value: "Help me set learning goals" }
+          ]
+        };
+      }
+      
+      // Platform help
+      if (lowerMessage.includes('platform') || lowerMessage.includes('how to') || lowerMessage.includes('navigate')) {
+        return {
+          text: "❓ Here's how to navigate Vidyavantra:<br><br>• <strong>Dashboard:</strong> View your progress and enrolled courses<br>• <strong>Course Catalog:</strong> Browse and enroll in new courses<br>• <strong>My Learning:</strong> Access your current courses<br>• <strong>Community:</strong> Connect with other learners<br>• <strong>Certificates:</strong> Download your earned certificates<br><br>What would you like to explore?",
+          actions: [
+            { text: "📊 Dashboard tour", value: "Show me around the dashboard" },
+            { text: "📚 Find courses", value: "How do I find courses" },
+            { text: "🏆 Get certificates", value: "How do I get certificates" }
+          ]
+        };
+      }
+      
+      // Greetings
+      if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+        return {
+          text: "Hello! 👋 Great to see you here! I'm Vidya, your AI learning assistant. I'm excited to help you on your learning journey.<br><br>I can assist you with course recommendations, technical support, study planning, and answering any questions about our platform.<br><br>What would you like to explore today?",
+          actions: [
+            { text: "🎯 Find courses", value: "Course recommendations" },
+            { text: "📖 Study tips", value: "Study guidance" },
+            { text: "🔧 Get help", value: "Technical support" }
+          ]
+        };
+      }
+      
+      // Specific course inquiries
+      if (lowerMessage.includes('python')) {
+        return {
+          text: "🐍 <strong>Python for Data Science</strong> is one of our most popular courses!<br><br><strong>What you'll learn:</strong><br>• Python fundamentals<br>• Data manipulation with Pandas<br>• Data visualization<br>• Machine learning basics<br><br><strong>Duration:</strong> 8 weeks<br><strong>Level:</strong> Beginner-friendly<br><strong>Certificate:</strong> Yes<br><br>Ready to start your Python journey?",
+          actions: [
+            { text: "📝 Enroll now", value: "I want to enroll in Python course" },
+            { text: "📋 View curriculum", value: "Show me Python curriculum" },
+            { text: "💰 Check pricing", "value": "What's the Python course price" }
+          ]
+        };
+      }
+      
+      // Default responses
+      const defaultResponses = [
+        {
+          text: "I understand you're asking about that topic. While I'm still learning, I can help you with:<br><br>• Course recommendations and enrollment<br>• Technical support and troubleshooting<br>• Study guidance and learning tips<br>• Platform navigation help<br><br>What specific area would you like assistance with?",
+          actions: [
+            { text: "📚 Courses", value: "Course recommendations" },
+            { text: "🔧 Support", value: "Technical support" },
+            { text: "📖 Study help", value: "Study guidance" }
+          ]
+        },
+        {
+          text: "That's an interesting question! I'm here to help you succeed in your learning journey. I can provide information about:<br><br>• Our course catalog and recommendations<br>• Learning strategies and study tips<br>• Technical assistance<br>• Platform features and navigation<br><br>How can I assist you today?",
+          actions: [
+            { text: "🎯 Explore courses", value: "Show me available courses" },
+            { text: "📈 Track progress", value: "How do I track my progress" },
+            { text: "👥 Join community", value: "How do I connect with other learners" }
+          ]
+        }
+      ];
+      
+      return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+    }
+
+    // Handle attachment
+    function handleAttachment() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*,.pdf,.doc,.docx';
+      input.onchange = function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          addMessage(`📎 Uploaded: ${file.name}`, 'user');
+          showTypingIndicator();
+          setTimeout(() => {
+            hideTypingIndicator();
+            addMessage("Thanks for sharing that file! 📎 I can see you've uploaded a document. While I can't process files directly yet, our human support team can help you with file-related questions. Would you like me to connect you with them?", 'bot', [
+              { text: "👨‍💻 Contact support", value: "Connect me with human support" },
+              { text: "❓ File help", value: "I need help with files" }
+            ]);
+          }, 1000);
+        }
+      };
+      input.click();
+    }
+
+    // Initialize chat
+    window.addEventListener('load', function() {
+      // Add welcome message after a short delay
+      setTimeout(() => {
+        scrollToBottom();
+      }, 500);
+    });
+
+    // Close chat when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!chatWidget.contains(e.target) && !chatButton.contains(e.target)) {
+        // Don't auto-close on mobile to prevent accidental closes
+        if (window.innerWidth > 768) {
+          chatWidget.classList.remove('open');
+        }
+      }
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96ef62d793b77e90',t:'MTc1NTE2MzMyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
